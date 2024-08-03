@@ -1,8 +1,14 @@
 const express = require('express')
 const app = express()
+const golfClubs = require('./data/golfClubs')
+const golfBalls = require('./data/golfBalls')
 
 app.get("/", (req, res, next) => {
-    res.json({ message: "hello"})
+    res.json(golfClubs)
+})
+
+app.get("/golfBalls", (req, res, next) => {
+    res.json(golfBalls)
 })
 
 app.listen(5000, () => {
