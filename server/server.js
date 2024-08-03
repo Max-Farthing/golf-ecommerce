@@ -1,15 +1,13 @@
 const express = require('express')
 const app = express()
-const golfClubs = require('./data/golfClubs')
-const golfBalls = require('./data/golfBalls')
 
-app.get("/", (req, res, next) => {
-    res.json(golfClubs)
+const productRoutes = require('./routes/products')
+
+app.get("/", (req, res) => {
+    res.send('Welcome to the API')
 })
 
-app.get("/golfBalls", (req, res, next) => {
-    res.json(golfBalls)
-})
+app.use('/products', productRoutes)
 
 app.listen(5000, () => {
     console.log("server started on port 5000")
