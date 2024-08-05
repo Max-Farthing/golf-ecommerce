@@ -4,18 +4,23 @@ const golfBags = require('../data/golfBags')
 const golfTech = require('../data/golfTech')
 
 
+exports.getProducts = (req, res) => {
+    const allProducts = [...golfClubs, ...golfBalls, ...golfBags, ...golfTech]
+    res.status(201).json(allProducts)
+}
+
 exports.getClubs = (req, res) => {
-    res.json(golfClubs)
+    res.status(201).json(golfClubs)
 }
 
 exports.getBalls = (req, res) => {
-    res.json(golfBalls)
+    res.status(201).json(golfBalls)
 }
 
 exports.getBags = (req, res) => {
-    res.json(golfBags)
+    res.status(201).json(golfBags)
 }
 
 exports.getTech = (req, res) => {
-    res.json(golfTech)
+    res.status(201).json(golfTech)
 }

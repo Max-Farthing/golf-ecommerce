@@ -1,8 +1,6 @@
 require('dotenv').config()
 
 const User = require('../models/user')
-const jwt = require('jsonwebtoken')
-const secret = process.env.JWT_SECRET
 
 exports.getSignUp = (req, res) => {
     const email = req.body.email
@@ -23,7 +21,7 @@ exports.getSignUp = (req, res) => {
 exports.getLogin = (req, res) => {
     const email = req.body.email
     const password = req.body.password
-    let loadedUser;
+    let loadedUser
 
     User.findOne({ email })
         .then(user => {
@@ -37,10 +35,14 @@ exports.getLogin = (req, res) => {
             if(!isEqual) {
                 return res.status(401).json({ message: "Incorrect Password" })
             }
-            const token = jwt.sign({
-                email: loadedUser.email,
-                userId: loadedUser._id.toString()
-            }, secret, {expiresIn: '1h'})
-            res.status(200).json({ token, userId: loadedUser._id.toString() })
+            req.session.isLoggedIn = true
+            req.session.user = loadedUser
+
+            res.status(200).json({ message: 'Login successful'})
         })
+        .catch(err => console.log(err))
+}
+
+exports.logOut = (req, res) => {
+    req.session.destroy(err => console.log(err))
 }

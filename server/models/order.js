@@ -5,12 +5,12 @@ const Schema = mongoose.Schema
 const orderSchema = new Schema({
     products: [
         {
-            product: { type: Object, required: true },
+            product: { type: String, required: true },
             quantity: { type: Number, required: true }
         }
     ],
-    user: {
-        type: String,
+    userId: {
+        type: Schema.Types.ObjectId,
         required: true,
         ref: 'User'
     }

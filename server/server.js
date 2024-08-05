@@ -2,9 +2,10 @@ require('dotenv').config()
 
 const express = require('express')
 const app = express()
-
+const session = require('express-session')
 const productRoutes = require('./routes/products')
 const mongoose = require('mongoose')
+const secret = process.env.SECRET
 
 app.use(express.json())
 
@@ -17,6 +18,13 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
     next()
 })
+
+app.use(session({
+    secret,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false }
+}))
 
 app.get("/", (req, res) => {
     res.send('Welcome to the API')
