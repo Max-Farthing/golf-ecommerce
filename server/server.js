@@ -3,9 +3,12 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const session = require('express-session')
-const productRoutes = require('./routes/products')
 const mongoose = require('mongoose')
 const secret = process.env.SECRET
+
+const productRoutes = require('./routes/products')
+const authRoutes = require('./routes/auth')
+const cartRoutes = require('./routes/cart')
 
 app.use(express.json())
 
@@ -31,6 +34,8 @@ app.get("/", (req, res) => {
 })
 
 app.use('/products', productRoutes)
+app.use('/auth', authRoutes)
+app.use('/cart', cartRoutes)
 
 const databaseConnection = process.env.DATABASE_URL
 const PORT = process.env.PORT || 5000
