@@ -5,7 +5,7 @@ import MainNavigation from '../components/MainNavigation'
 
 export default function RootLayout() {
   return (
-    <Container sx={{ bgcolor: 'Tomato', height: '100vh', pt: 7, ':hover': { bgcolor: 'turquoise'}, }}>
+    <Container sx={{ bgcolor: 'Tomato', height: '100vh', pt: 7, ':hover': { bgcolor: ''}, }}>
       <MainNavigation />
       <main>
         <Outlet />

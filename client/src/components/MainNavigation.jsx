@@ -8,12 +8,18 @@ export default function MainNavigation() {
   return (
     <AppBar position='fixed' sx={{ bgcolor: 'white', color: 'black', height: '100px' }}>
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', mt: '36px' }}>
-        <Button sx={{ pb: 1, color: 'black', ml: 20 }}>GolfGoat</Button>
+        <Button
+          sx={{ pb: 1, color: 'black', ml: 20 }}
+          component={NavLink}
+          to='/'
+        >
+          GolfGoat
+        </Button>
         <Box>
           <Button
             color='inherit'
             component={NavLink}
-            to='/'
+            to='/products/golfBalls'
             sx={navStyle}
           >
             Balls
@@ -21,7 +27,7 @@ export default function MainNavigation() {
           <Button
             color='inherit'
             component={NavLink}
-            to='/'
+            to='/products/golfClubs'
             sx={navStyle}
           >
             Clubs
@@ -29,7 +35,7 @@ export default function MainNavigation() {
           <Button
             color='inherit'
             component={NavLink}
-            to='/'
+            to='/products/golfBags'
             sx={navStyle}
           >
             Bags
@@ -37,7 +43,7 @@ export default function MainNavigation() {
           <Button
             color='inherit'
             component={NavLink}
-            to='/'
+            to='/products/golfTech'
             sx={navStyle}
           >
             Tech
@@ -45,6 +51,7 @@ export default function MainNavigation() {
         </Box>
         <Box>
           <Button sx={navStyle}>Search</Button>
+          <Button sx={navStyle}>Log in</Button>
         </Box>
       </Toolbar>
     </AppBar>

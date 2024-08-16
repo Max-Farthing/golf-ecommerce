@@ -20,7 +20,6 @@ export const fetchCartData = () => {
             const cartData = await fetchData()
             dispatch(replaceCart({
                 items: cartData.items || [],
-                totalQuantity: cartData.totalQuantity
             }))
         } catch (err) {
             console.log(err)
@@ -46,13 +45,40 @@ export const addItem = (product) => {
             }
     
             const data = await response.json()
-    
             return data
         }
         try {
             const addedItem = await addItemRequest()
             dispatch(addItemToCart(addedItem))
         } catch(err) {
+            console.log(err)
+        }
+    }
+}
+
+export const removeItem = (id) => {
+    return async (dispatch) => {
+        const removeItemRequest = async () => {
+            const response = await fetch(`http:localhost:5000/cart/delete/${id}`,{
+                method: "DELETE",
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+
+            if(!response.ok) {
+                throw new Error("Error deleting item from cart")
+            }
+
+            const data = await response.json()
+            return data
+        }
+
+        try {
+            const result = await removeItemRequest()
+            console.log(result)
+            dispatch(removeItemFromCart(id))
+        } catch (err) {
             console.log(err)
         }
     }
