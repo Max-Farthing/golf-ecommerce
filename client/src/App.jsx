@@ -6,6 +6,7 @@ import GolfBallsPage from './pages/GolfBalls'
 import GolfClubsPage from './pages/GolfClubs'
 import GolfBagsPage from './pages/GolfBags'
 import GolfTechPage from './pages/GolfTech'
+import ProductDetailsPage from './pages/ProductDetails'
 
 const router = createBrowserRouter([
   {
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
           { path: 'golfClubs', element: <GolfClubsPage /> },
           { path: 'golfBags', element: <GolfBagsPage /> },
           { path: 'golfTech', element: <GolfTechPage /> },
-
+          { path: ':category/:productName', element: <ProductDetailsPage />}
         ]
       }
     ]

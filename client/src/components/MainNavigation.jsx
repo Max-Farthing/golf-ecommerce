@@ -2,7 +2,7 @@ import { AppBar, Box, Button, Toolbar, Typography } from '@mui/material'
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-const navStyle = { pb: 1, mx: 3, color: 'black', ':hover': { textDecoration: 'underline', textDecorationColor: 'red', textUnderlineOffset: '5px' } }
+const navStyle = { pb: 1, mx: 2, color: 'black', ':hover': { textDecoration: 'underline', textDecorationColor: 'red', textUnderlineOffset: '5px' } }
 
 export default function MainNavigation() {
   return (
@@ -50,8 +50,11 @@ export default function MainNavigation() {
           </Button>
         </Box>
         <Box>
-          <Button sx={navStyle}>Search</Button>
-          <Button sx={navStyle}>Log in</Button>
+          <Box>
+            <Button sx={navStyle}>Cart</Button>
+            <Button sx={navStyle}>Search</Button>
+            <Button sx={navStyle}>Log in</Button>
+          </Box>
         </Box>
       </Toolbar>
     </AppBar>
