@@ -23,3 +23,27 @@ exports.getBags = (req, res) => {
 exports.getTech = (req, res) => {
     res.status(201).json(golfTech)
 }
+
+exports.getProductDetails = (req, res) => {
+    const { category, productId } = req.params
+
+    let product
+    switch (category) {
+        case 'golfClubs':
+            product = golfClubs.find(item => item.id == productId)
+            break
+        case 'golfBalls':
+            product = golfBalls.find(item => item.id == productId)
+            break
+        case 'golfBags':
+            product = golfBags.find(item => item.id == productId)
+            break
+        case 'golfTech':
+            product = golfTech.find(item => item.id == productId)
+            break
+        default:
+            return res.status(404).json({ message: 'Not found' })
+    }
+
+    res.status(201).json(product)
+}

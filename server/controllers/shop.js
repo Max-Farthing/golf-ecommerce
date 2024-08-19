@@ -46,6 +46,7 @@ exports.deleteItemFromCart = (req, res) => {
 exports.addItemToCart = (req, res) => {
     const product = req.body.product
     if (req.session.user) {
+        console.log(product)
         req.session.user.addToCart(product)
             .then(result => res.status(201).json(result))
             .catch(err => console.log(err))
@@ -66,9 +67,11 @@ exports.addItemToCart = (req, res) => {
             }
 
             req.session.cart.items = cart
+            console.log(cart)
             res.status(200).json(cart)
         } else {
             req.session.cart = { items: [{ product, quantity: 1 }] }
+            console.log(req.session.cart)
             res.status(200).json(req.session.cart.items)
         }
     }

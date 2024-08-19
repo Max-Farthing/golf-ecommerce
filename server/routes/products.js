@@ -12,4 +12,6 @@ router.get('/bags', productController.getBags)
 
 router.get('/tech', productController.getTech)
 
+router.get('/:category/:productId', productController.getProductDetails)
+
 module.exports = router

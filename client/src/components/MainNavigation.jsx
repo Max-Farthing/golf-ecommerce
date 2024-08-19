@@ -1,6 +1,6 @@
 import { AppBar, Box, Button, Toolbar, Typography } from '@mui/material'
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 const navStyle = { pb: 1, mx: 2, color: 'black', ':hover': { textDecoration: 'underline', textDecorationColor: 'red', textUnderlineOffset: '5px' } }
 
@@ -53,7 +53,12 @@ export default function MainNavigation() {
           <Box>
             <Button sx={navStyle}>Cart</Button>
             <Button sx={navStyle}>Search</Button>
-            <Button sx={navStyle}>Log in</Button>
+            <Link 
+              sx={navStyle}
+              to={'/login'}
+            >
+              Log in
+            </Link>
           </Box>
         </Box>
       </Toolbar>
