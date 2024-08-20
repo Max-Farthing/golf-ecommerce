@@ -26,7 +26,7 @@ app.use(session({
     secret,
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false }
+    cookie: { secure: false, maxAge: 3000000 }
 }))
 
 app.get("/", (req, res) => {

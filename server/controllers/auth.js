@@ -38,7 +38,7 @@ exports.getLogin = (req, res) => {
             req.session.isLoggedIn = true
             req.session.user = loadedUser
 
-            res.status(200).json({ message: 'Login successful'})
+            res.status(200).json(req.session)
         })
         .catch(err => console.log(err))
 }

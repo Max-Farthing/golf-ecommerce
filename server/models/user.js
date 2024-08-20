@@ -27,7 +27,7 @@ const userSchema = new Schema({
 
 userSchema.methods.addToCart = function(product) {
     const cartProductIndex = this.cart.items.findIndex(item => {
-        return item.product === product.name
+        return item.product.name === product.name
     })
     let newQuantity = 1
     const updatedCartItems = [...this.cart.items]
@@ -37,7 +37,7 @@ userSchema.methods.addToCart = function(product) {
         updatedCartItems[cartProductIndex].quantity = newQuantity
     } else {
         updatedCartItems.push({
-            product: product.name,
+            product: product,
             quantity: newQuantity
         })
     }
@@ -51,7 +51,7 @@ userSchema.methods.addToCart = function(product) {
 
 userSchema.methods.removeFromCart = function(product) {
     const cartProductIndex = this.cart.items.findIndex(item => {
-        return item.product === product.name
+        return item.product.name === product.name
     })
 
     let newQuantity = this.cart.items[cartProductIndex].quantity - 1

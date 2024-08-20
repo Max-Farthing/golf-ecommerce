@@ -20,7 +20,7 @@ exports.getCart = (req, res) => {
 }
 
 exports.deleteItemFromCart = (req, res) => {
-    const product = req.params.item
+    const product = req.body.product
     if (req.session.user) {
         req.session.user.removeFromCart(product)
             .then(result => res.status(201).json(result))
@@ -29,7 +29,7 @@ exports.deleteItemFromCart = (req, res) => {
         if (req.session.cart) {
             const cart = [...req.session.cart.items]
             const itemIndex = req.session.cart.items.findIndex(item => {
-                return item.product === product.name
+                return item.product.name === product.name
             })
             let newQuantity = cart[itemIndex].quantity - 1
             if (newQuantity === 0) {
@@ -46,15 +46,20 @@ exports.deleteItemFromCart = (req, res) => {
 exports.addItemToCart = (req, res) => {
     const product = req.body.product
     if (req.session.user) {
-        console.log(product)
-        req.session.user.addToCart(product)
-            .then(result => res.status(201).json(result))
-            .catch(err => console.log(err))
+        User.findById(req.session.user._id)
+        .then(user => {
+            if(!user) {
+                return res.status(404).json({ message: "User not found"})
+            }
+            return user.addToCart(product)
+        })
+        .then(result => res.status(201).json(result))
+        .catch(err => console.log(err))
     } else {
         if (req.session.cart) {
             const cart = [...req.session.cart.items]
             const itemIndex = cart.findIndex(item => {
-                return item.product === product.name
+                return item.product.name === product.name
             })
 
             if (itemIndex >= 0) {
@@ -67,11 +72,9 @@ exports.addItemToCart = (req, res) => {
             }
 
             req.session.cart.items = cart
-            console.log(cart)
             res.status(200).json(cart)
         } else {
             req.session.cart = { items: [{ product, quantity: 1 }] }
-            console.log(req.session.cart)
             res.status(200).json(req.session.cart.items)
         }
     }

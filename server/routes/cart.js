@@ -8,7 +8,7 @@ router.get('/', shopController.getCart)
 
 router.post('/item', shopController.addItemToCart)
 
-router.delete('/delete/:item', shopController.deleteItemFromCart)
+router.delete('/delete/item', shopController.deleteItemFromCart)
 
 router.post('/order', shopController.postOrder)
 
