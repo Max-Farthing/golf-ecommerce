@@ -22,8 +22,16 @@ exports.getCart = (req, res) => {
 exports.deleteItemFromCart = (req, res) => {
     const product = req.body.product
     if (req.session.user) {
-        req.session.user.removeFromCart(product)
-            .then(result => res.status(201).json(result))
+        User.findById(req.session.user._id)
+            .then(user => {
+                if (!user) {
+                    return res.status(404).json({
+                        message: "User not found"
+                    })
+                }
+                return user.removeFromCart(product)
+            })
+            .then(result => res.status(202).json(result))
             .catch(err => console.log(err))
     } else {
         if (req.session.cart) {
@@ -45,16 +53,17 @@ exports.deleteItemFromCart = (req, res) => {
 
 exports.addItemToCart = (req, res) => {
     const product = req.body.product
+    console.log(product)
     if (req.session.user) {
         User.findById(req.session.user._id)
-        .then(user => {
-            if(!user) {
-                return res.status(404).json({ message: "User not found"})
-            }
-            return user.addToCart(product)
-        })
-        .then(result => res.status(201).json(result))
-        .catch(err => console.log(err))
+            .then(user => {
+                if (!user) {
+                    return res.status(404).json({ message: "User not found" })
+                }
+                return user.addToCart(product)
+            })
+            .then(result => res.status(201).json(result))
+            .catch(err => console.log(err))
     } else {
         if (req.session.cart) {
             const cart = [...req.session.cart.items]
@@ -86,6 +95,8 @@ exports.postOrder = (req, res) => {
 
     if (req.session.user) { //if we have a user
         userId = req.session.user._id
+        console.log(userId)
+        console.log(req.session.user.cart.items)
         cartItems = req.session.user.cart.items
     } else if (req.session.cart) { //if we have only a cart (guest user)
         cartItems = req.session.cart.items
@@ -102,11 +113,17 @@ exports.postOrder = (req, res) => {
     order.save()
         .then(result => {
             if (req.session.user) {
-                req.session.user.clearCart()
+                User.findById(userId)
+                    .then(user => {
+                        if(!user) {
+                            res.status(404).json({ message: "Error with order" })
+                        }
+                        user.clearCart()
+                    })
             } else {
                 req.session.cart = null
             }
-            res.status(202).json({ message: 'Cart ordered' })
+            res.status(202).json(result)
         })
         .catch(err => console.log(err))
 }

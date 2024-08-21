@@ -25,14 +25,14 @@ exports.getLogin = (req, res) => {
 
     User.findOne({ email })
         .then(user => {
-            if(!user) {
+            if (!user) {
                 return res.status(404).json({ message: "User not found" })
             }
             loadedUser = user
             return password === user.password
         })
         .then(isEqual => {
-            if(!isEqual) {
+            if (!isEqual) {
                 return res.status(401).json({ message: "Incorrect Password" })
             }
             req.session.isLoggedIn = true
@@ -44,5 +44,12 @@ exports.getLogin = (req, res) => {
 }
 
 exports.logOut = (req, res) => {
-    req.session.destroy(err => console.log(err))
+    req.session.destroy(err => {
+        if (err) {
+            console.log("logout " + err)
+        }
+
+        req.session.isLoggedIn = false
+        res.status(200).json({ message: "Logout successful" })
+    })
 }
