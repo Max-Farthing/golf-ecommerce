@@ -37,8 +37,14 @@ exports.getLogin = (req, res) => {
             }
             req.session.isLoggedIn = true
             req.session.user = loadedUser
-
-            res.status(200).json(req.session)
+            req.session.save(err => {
+                if(err) {
+                    console.log(err)
+                    return res.status(500).json({ message: "Session save failed" })
+                }
+                console.log(req.session)
+                res.status(200).json(req.session)
+            })
         })
         .catch(err => console.log(err))
 }

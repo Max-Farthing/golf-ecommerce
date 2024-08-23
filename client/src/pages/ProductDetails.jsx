@@ -2,7 +2,7 @@ import { Typography, Button, Box } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { addItemToCart } from '../store/cartSlice'
+import { addItem } from '../store/cartActions'
 
 export default function ProductDetailsPage() {
     const dispatch = useDispatch()
@@ -10,7 +10,7 @@ export default function ProductDetailsPage() {
     const [product, setProduct] = useState(null)
 
     function handleAddToCart() {
-        dispatch(addItemToCart(product))
+        dispatch(addItem(product))
     }
 
     useEffect(() => {

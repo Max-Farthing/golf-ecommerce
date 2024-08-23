@@ -18,7 +18,7 @@ export default function LogInPage() {
             password: data.password
         }
 
-        fetch('http://localhost:5000/', {
+        fetch('http://localhost:5000/auth/login', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
