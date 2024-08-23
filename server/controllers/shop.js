@@ -56,6 +56,7 @@ exports.addItemToCart = (req, res) => {
     console.log(product)
     console.log(req.session)
     if (req.session.user) {
+        console.log("test")
         User.findById(req.session.user._id)
             .then(user => {
                 if (!user) {
@@ -63,7 +64,10 @@ exports.addItemToCart = (req, res) => {
                 }
                 return user.addToCart(product)
             })
-            .then(result => res.status(201).json(result))
+            .then(result => {
+                req.session.user = result
+                res.status(201).json(result)
+            })
             .catch(err => console.log(err))
     } else {
         if (req.session.cart) {

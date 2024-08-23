@@ -23,6 +23,7 @@ export default function LogInPage() {
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify(info)
         })
             .then(result => result.json())

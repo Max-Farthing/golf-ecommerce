@@ -4,7 +4,9 @@ const express = require('express')
 const app = express()
 const session = require('express-session')
 const mongoose = require('mongoose')
+const MongoStore = require('connect-mongo')
 const secret = process.env.SECRET
+const databaseConnection = process.env.DATABASE_URL
 
 const productRoutes = require('./routes/products')
 const authRoutes = require('./routes/auth')
@@ -13,12 +15,10 @@ const cartRoutes = require('./routes/cart')
 app.use(express.json())
 
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*')
-    res.setHeader(
-        'Access-Control-Allow-Methods',
-        'OPTIONS, GET, POST, PUT, PATCH, DELETE'
-    )
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173'); // Set this to your frontend origin
+    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Credentials', 'true'); // Allow credentials
     next()
 })
 
@@ -26,6 +26,9 @@ app.use(session({
     secret,
     resave: false,
     saveUninitialized: false,
+    store: MongoStore.create({
+        mongoUrl: databaseConnection
+    }),
     cookie: { secure: false, maxAge: 3000000 }
 }))
 
@@ -37,7 +40,6 @@ app.use('/products', productRoutes)
 app.use('/auth', authRoutes)
 app.use('/cart', cartRoutes)
 
-const databaseConnection = process.env.DATABASE_URL
 const PORT = process.env.PORT || 5000
 
 mongoose
