@@ -4,8 +4,9 @@ export const fetchCartData = () => {
     return async (dispatch) => {
         const fetchData = async () => {
             const response = await fetch(
-                'http://localhost:5000/cart'
-            )
+                'http://localhost:5000/cart', {
+                    credentials: 'include'
+                })
 
             if(!response.ok) {
                 throw new Error('Could not fetch cart data')
@@ -57,14 +58,15 @@ export const addItem = (product) => {
     }
 }
 
-export const removeItem = (id) => {
+export const removeItem = (product) => {
     return async (dispatch) => {
         const removeItemRequest = async () => {
-            const response = await fetch(`http:localhost:5000/cart/delete/${id}`,{
+            const response = await fetch(`http://localhost:5000/cart/delete/item`, {
                 method: "DELETE",
                 headers: {
                     'Content-Type': 'application/json'
-                }
+                },
+                body: JSON.stringify(product)
             })
 
             if(!response.ok) {
@@ -78,7 +80,7 @@ export const removeItem = (id) => {
         try {
             const result = await removeItemRequest()
             console.log(result)
-            dispatch(removeItemFromCart(id))
+            dispatch(removeItemFromCart(product))
         } catch (err) {
             console.log(err)
         }

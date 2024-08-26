@@ -9,6 +9,7 @@ import GolfTechPage from './pages/GolfTech'
 import ProductDetailsPage from './pages/ProductDetails'
 import LogInPage from './pages/LogIn'
 import NewAccountPage from './pages/NewAccount'
+import Cart from './pages/CartPage'
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,12 @@ const router = createBrowserRouter([
         children: [
           { index: true, element: <LogInPage /> },
           { path: 'create', element: <NewAccountPage /> }
+        ]
+      },
+      {
+        path: 'cart',
+        children: [
+          { index: true, element: <Cart /> }
         ]
       }
     ]

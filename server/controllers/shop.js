@@ -21,6 +21,7 @@ exports.getCart = (req, res) => {
 
 exports.deleteItemFromCart = (req, res) => {
     const product = req.body.product
+    console.log(product)
     if (req.session.user) {
         User.findById(req.session.user._id)
             .then(user => {
@@ -56,7 +57,6 @@ exports.addItemToCart = (req, res) => {
     console.log(product)
     console.log(req.session)
     if (req.session.user) {
-        console.log("test")
         User.findById(req.session.user._id)
             .then(user => {
                 if (!user) {

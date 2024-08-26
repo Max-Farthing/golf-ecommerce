@@ -51,7 +51,9 @@ export default function MainNavigation() {
         </Box>
         <Box>
           <Box>
-            <Button sx={navStyle}>Cart</Button>
+            <Link sx={navStyle}
+              to={'/cart'}
+            >Cart</Link>
             <Button sx={navStyle}>Search</Button>
             <Link 
               sx={navStyle}
