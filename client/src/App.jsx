@@ -10,6 +10,7 @@ import ProductDetailsPage from './pages/ProductDetails'
 import LogInPage from './pages/LogIn'
 import NewAccountPage from './pages/NewAccount'
 import Cart from './pages/CartPage'
+import OrderInfo from './pages/OrderInfoPage'
 
 const router = createBrowserRouter([
   {
@@ -37,7 +38,8 @@ const router = createBrowserRouter([
       {
         path: 'cart',
         children: [
-          { index: true, element: <Cart /> }
+          { index: true, element: <Cart /> },
+          { path: 'order', element: <OrderInfo /> }
         ]
       }
     ]

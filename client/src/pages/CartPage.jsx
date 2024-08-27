@@ -2,8 +2,10 @@ import { Box, Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { removeItem } from "../store/cartActions";
+import { useNavigate } from "react-router-dom"
 
 export default function Cart() {
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const [cart, setCart] = useState([])
 
@@ -22,6 +24,10 @@ export default function Cart() {
         dispatch(removeItem(product))
     }
 
+    function handleCheckOut() {
+        navigate('/cart/order')
+    }
+
     return (
         <Box
             sx={{ mt: 25 }}
@@ -34,6 +40,7 @@ export default function Cart() {
                     <Button onClick={() => handleRemoveItem(item)}>Remove Item</Button>
                 </li>
             )) : <p>Cart is empty</p>}
+            {cart.length !== 0 && <Button onClick={handleCheckOut}>Checkout</Button>}
         </Box>
     )
 }
