@@ -1,8 +1,11 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Box, Button } from '@mui/material'
+import { useDispatch } from 'react-redux'
+import { setLoggedIn } from '../store/cartSlice'
 
 export default function LogInPage() {
+    const dispatch = useDispatch()
     const navigate = useNavigate()
 
     function handleSubmit(event) {
@@ -27,7 +30,10 @@ export default function LogInPage() {
             body: JSON.stringify(info)
         })
             .then(result => result.json())
-            .then(data => console.log(data))
+            .then(data => {
+                dispatch(setLoggedIn(true))
+                console.log(data)
+            })
             .catch(err => console.log(err))
 
         navigate('/')

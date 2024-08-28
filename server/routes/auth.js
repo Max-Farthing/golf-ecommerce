@@ -18,4 +18,6 @@ authController.getSignUp)
 
 router.post('/logout', authController.logOut)
 
+router.get('/check', authController.checkAuthentication)
+
 module.exports = router

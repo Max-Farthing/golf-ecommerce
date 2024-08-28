@@ -54,8 +54,14 @@ exports.logOut = (req, res) => {
         if (err) {
             console.log("logout " + err)
         }
-
-        req.session.isLoggedIn = false
         res.status(200).json({ message: "Logout successful" })
     })
+}
+
+exports.checkAuthentication = (req, res) => {
+    if(req.session.user) {
+        res.status(200).json(true)
+    } else {
+        res.status(401).json(false)
+    }
 }

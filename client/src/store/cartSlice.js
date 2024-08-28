@@ -4,6 +4,7 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState: {
         items: [],
+        loggedIn: false
     },
     reducers: {
         replaceCart(state, action) {
@@ -38,10 +39,13 @@ const cartSlice = createSlice({
                     existingItem.totalPrice -= existingItem.price
                 }
             }
+        },
+        setLoggedIn(state, action) {
+            state.loggedIn = action.payload
         }
     }
 })
 
-export const { replaceCart, addItemToCart, removeItemFromCart } = cartSlice.actions
+export const { replaceCart, addItemToCart, removeItemFromCart, setLoggedIn } = cartSlice.actions
 
 export default cartSlice
