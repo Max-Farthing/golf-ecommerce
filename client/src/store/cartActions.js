@@ -13,14 +13,14 @@ export const fetchCartData = () => {
             }
 
             const data = await response.json()
-
             return data
         }
 
         try {
             const cartData = await fetchData()
+            console.log(cartData)
             dispatch(replaceCart({
-                items: cartData.items || [],
+                items: cartData || [],
             }))
         } catch (err) {
             console.log(err)
@@ -63,6 +63,7 @@ export const removeItem = (product) => {
         const removeItemRequest = async () => {
             const response = await fetch(`http://localhost:5000/cart/delete/item`, {
                 method: "DELETE",
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json'
                 },

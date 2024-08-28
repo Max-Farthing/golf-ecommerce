@@ -32,7 +32,10 @@ exports.deleteItemFromCart = (req, res) => {
                 }
                 return user.removeFromCart(product)
             })
-            .then(result => res.status(202).json(result))
+            .then(result => {
+                console.log(result)
+                res.status(202).json(result)
+            })
             .catch(err => console.log(err))
     } else {
         if (req.session.cart) {
@@ -120,7 +123,7 @@ exports.postOrder = (req, res) => {
             if (req.session.user) {
                 User.findById(userId)
                     .then(user => {
-                        if(!user) {
+                        if (!user) {
                             res.status(404).json({ message: "Error with order" })
                         }
                         user.clearCart()
