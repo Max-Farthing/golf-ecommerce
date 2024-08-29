@@ -8,19 +8,7 @@ import { fetchCartData } from "../store/cartActions";
 export default function Cart() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    // const [cart, setCart] = useState([])
     const cart = useSelector((state) => state.cart.items)
-
-    // useEffect(() => {
-    //     fetch('http://localhost:5000/cart', {
-    //         credentials: 'include'
-    //     })
-    //     .then(result => result.json())
-    //     .then(data => {
-    //         console.log(data)
-    //         setCart(data)
-    //     })
-    // }, [])
 
     useEffect(() => {
         dispatch(fetchCartData())
