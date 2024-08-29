@@ -1,4 +1,4 @@
-import { Box, Paper, Typography } from '@mui/material'
+import { Box, Card, Paper, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -16,22 +16,25 @@ export default function GolfTechPage() {
     }, [])
 
     return (
-        <Box sx={{ display: 'grid', justifyContent: 'center' }}>
+        <Box sx={{ display: 'grid', justifyContent: 'center', gap: 2 }}>
             {golfTech.map(item => (
-                <Link
-                    key={item.id}
-                    to={`/products/golfTech/${item.id}`}
-                >
-                    <Paper elevation={5} sx={{
-                        mt: 5
-                    }}>
-                        <p>{item.id}</p>
+                // <Paper elevation={10} sx={{
+                //     mt: 5,
+                //     pl: 2 
+                // }}>
+                    <Card
+                        component={Link}
+                        key={item.id}
+                        to={`/products/golfTech/${item.id}`}
+                        elevation={10}
+                        sx={{ textDecoration: 'none', pl: 2, mt: 5, }}
+                    >
                         <Typography>{item.brand}</Typography>
                         <Typography>{item.name}</Typography>
                         <Typography>{item.description}</Typography>
                         <Typography>${item.price}</Typography>
-                    </Paper>
-                </Link>
+                    </Card>
+                // </Paper>
             ))}
         </Box>
     )

@@ -1,14 +1,16 @@
-import { AppBar, Box, Button, Toolbar, Typography } from '@mui/material'
+import { AppBar, Box, Button, IconButton, Toolbar, Badge } from '@mui/material'
 import React, { useEffect } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { setLoggedIn } from '../store/cartSlice'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const navStyle = { pb: 1, mx: 2, color: 'black', ':hover': { textDecoration: 'underline', textDecorationColor: 'red', textUnderlineOffset: '5px' } }
 
 export default function MainNavigation() {
   const dispatch = useDispatch()
   const loggedIn = useSelector((state) => state.cart.loggedIn)
+  const cart = useSelector((state) => state.cart.items)
 
   useEffect(() => {
     fetch('http://localhost:5000/auth/check', {
@@ -17,7 +19,7 @@ export default function MainNavigation() {
     })
       .then(response => response.json())
       .then(isAuthenticated => {
-        if(isAuthenticated) {
+        if (isAuthenticated) {
           dispatch(setLoggedIn(true))
         } else {
           dispatch(setLoggedIn(false))
@@ -80,18 +82,35 @@ export default function MainNavigation() {
           </Button>
         </Box>
         <Box>
-          <Box>
-            <Link sx={navStyle}
+          <Box sx={{ mr: 5 }}>
+            <IconButton
+              aria-label="cart"
+              component={NavLink}
               to={'/cart'}
-            >Cart</Link>
+            >
+              <Badge
+                badgeContent={cart.length} color="secondary"
+                sx={{
+                  '& .MuiBadge-badge': {
+                    right: -3,
+                    top: 13,
+                    border: `2px solid black`,
+                    padding: '0 4px',
+                  },
+                }}>
+                <ShoppingCartIcon sx={{ color: 'black' }} />
+              </Badge>
+            </IconButton>
             {
-              !loggedIn ? <Link
-                sx={navStyle}
-                to={'/login'}
-              >
-                Log in
-              </Link> :
-                <Button onClick={handleLogOut}>
+              !loggedIn ?
+                <Button
+                  component={NavLink}
+                  sx={navStyle}
+                  to={'/login'}
+                >
+                  Log in
+                </Button> :
+                <Button sx={navStyle} onClick={handleLogOut}>
                   Log out
                 </Button>
             }

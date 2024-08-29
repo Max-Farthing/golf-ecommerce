@@ -131,7 +131,7 @@ exports.postOrder = (req, res) => {
             } else {
                 req.session.cart = null
             }
-            res.status(202).json(result)
+            res.status(202).json({items: result.products})
         })
         .catch(err => console.log(err))
 }

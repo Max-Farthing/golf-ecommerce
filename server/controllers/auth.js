@@ -35,7 +35,6 @@ exports.getLogin = (req, res) => {
             if (!isEqual) {
                 return res.status(401).json({ message: "Incorrect Password" })
             }
-            req.session.isLoggedIn = true
             req.session.user = loadedUser
             req.session.save(err => {
                 if(err) {
