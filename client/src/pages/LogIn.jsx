@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Box, Button } from '@mui/material'
+import { Box, Button, InputAdornment, InputLabel, Paper, TextField, Typography } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { setLoggedIn } from '../store/cartSlice'
+import EmailIcon from '@mui/icons-material/Email';
 
 export default function LogInPage() {
     const dispatch = useDispatch()
@@ -40,15 +41,69 @@ export default function LogInPage() {
     }
 
     return (
-        <Box sx={{ mt: 20 }}>
-            <form onSubmit={handleSubmit}>
-                <label>Email</label>
-                <input id='email' type='email' name='email' required />
-                <label>Password</label>
-                <input id='password' type='password' name='password' required />
-                <Button type='submit'>Log in</Button>
-            </form>
-            <Link to={'/login/create'}>Create an Account</Link>
-        </Box>
+        <Paper elevation={20} sx={{ mt: 20, bg: 'white', display: 'flex', flexDirection: 'column', alignItems: 'baseline', gap: 2 }}>
+            <Typography variant='h2' sx={{ mt: 7, mb: -2 }}>Login</Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Typography sx={{ mr: 1 }} variant='p'>Dont have an account yet?</Typography>
+                <Link
+                    to={'/login/create'}
+                    onMouseOver={(e) => e.target.style.color = 'red'}
+                    onMouseOut={(e) => e.target.style.color = 'purple'}
+                >
+                    Create an Account
+                </Link>
+            </Box>
+            <Box component='form' onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', ml: '10%', mb: 7, gap: .5, }}>
+                <InputLabel>Email</InputLabel>
+                <TextField
+                    variant='outlined'
+                    label="you@example.com"
+                    id='email'
+                    type='email'
+                    name='email'
+                    required
+                    sx={{
+                        width: 300,
+                        '& .MuiOutlinedInput-root': {
+                            '&.Mui-focused': {
+                                '& fieldset': {
+                                    borderColor: 'black',
+                                },
+                                color: 'black',
+                            },
+                        },
+                        '& .MuiInputLabel-root': {
+                            '&.Mui-focused': {
+                                color: 'black',
+                            },
+                        },
+                    }}
+                />
+                <InputLabel>Password</InputLabel>
+                <TextField
+                    label="Enter 6 characters or more"
+                    id='password'
+                    type='password'
+                    name='password'
+                    required
+                    sx={{
+                        '& .MuiOutlinedInput-root': {
+                            '&.Mui-focused': {
+                                '& fieldset': {
+                                    borderColor: 'black',
+                                },
+                                color: 'black',
+                            },
+                        },
+                        '& .MuiInputLabel-root': {
+                            '&.Mui-focused': {
+                                color: 'black',
+                            },
+                        },
+                    }}
+                />
+                <Button type='submit' variant='contained' sx={{ backgroundColor: 'black', mt: 3, height: 50, ':hover': { backgroundColor: 'red' } }}>Login</Button>
+            </Box>
+        </Paper>
     )
 }
