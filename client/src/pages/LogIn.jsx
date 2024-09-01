@@ -41,7 +41,7 @@ export default function LogInPage() {
     }
 
     return (
-        <Paper elevation={20} sx={{ mt: 20, bg: 'white', display: 'flex', flexDirection: 'column', alignItems: 'baseline', gap: 2 }}>
+        <Paper elevation={20} sx={{ mt: 20, bg: 'white', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, mx: { xs: '20%', sm: '35%'} }}>
             <Typography variant='h2' sx={{ mt: 7, mb: -2 }}>Login</Typography>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Typography sx={{ mr: 1 }} variant='p'>Dont have an account yet?</Typography>
@@ -49,11 +49,12 @@ export default function LogInPage() {
                     to={'/login/create'}
                     onMouseOver={(e) => e.target.style.color = 'red'}
                     onMouseOut={(e) => e.target.style.color = 'purple'}
+                    style={{ textDecoration: 'none'}}
                 >
                     Create an Account
                 </Link>
             </Box>
-            <Box component='form' onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', ml: '10%', mb: 7, gap: .5, }}>
+            <Box component='form' onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', mb: 7, gap: .5, }}>
                 <InputLabel>Email</InputLabel>
                 <TextField
                     variant='outlined'
@@ -63,7 +64,10 @@ export default function LogInPage() {
                     name='email'
                     required
                     sx={{
-                        width: 300,
+                        width: {
+                            xs: '100%',
+                            sm: 300
+                        },
                         '& .MuiOutlinedInput-root': {
                             '&.Mui-focused': {
                                 '& fieldset': {

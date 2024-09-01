@@ -1,15 +1,15 @@
 import React from 'react'
-import Container from '@mui/material/Container'
 import { Outlet } from 'react-router-dom'
 import MainNavigation from '../components/MainNavigation'
+import { Box } from '@mui/material'
 
 export default function RootLayout() {
   return (
-    <Container sx={{ bgcolor: 'black', height: '100vh', pt: 7 }}>
+    <Box sx={{ bgcolor: 'lightgreen', height: '100vh', width: '100vw', pt: 7 }}>
       <MainNavigation />
       <main>
         <Outlet />
       </main>
-    </Container>
+    </Box>
   )
 }

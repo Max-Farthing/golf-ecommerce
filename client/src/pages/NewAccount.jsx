@@ -1,5 +1,5 @@
-import { Box, Button } from '@mui/material'
-import { useNavigate } from 'react-router-dom'
+import { Paper, Button, Box, Typography, InputLabel, TextField, Checkbox, FormControlLabel } from '@mui/material'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function NewAccountPage() {
     const navigate = useNavigate()
@@ -33,16 +33,102 @@ export default function NewAccountPage() {
     }
 
     return (
-        <Box sx={{ mt: 20 }}>
-            <form onSubmit={handleSubmit}>
-                <label>Email</label>
-                <input id='email' type='email' name='email' required />
-                <label>Password</label>
-                <input id='password' type='password' name='password' required />
-                <label>Confirm Password</label>
-                <input />
-                <Button type='submit'>Submit</Button>
-            </form>
-        </Box>
+        <Paper elevation={20} sx={{ mt: 20, bg: 'white', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, mx: { xs: '20%', sm: '35%' } }}>
+            <Typography variant='h3' sx={{ mt: 7, mb: -2 }}>Sign Up</Typography>
+            <Box component='form' onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: .5, mb: 7 }}>
+                <Typography sx={{ pb: 1, textAlign: 'center' }}>Sign up <strong>NOW</strong> for special offers</Typography>
+                <InputLabel>Email</InputLabel>
+                <TextField
+                    label='you@example.com'
+                    id='email'
+                    type='email'
+                    name='email'
+                    required
+                    sx={{
+                        '& .MuiOutlinedInput-root': {
+                            '&.Mui-focused': {
+                                '& fieldset': {
+                                    borderColor: 'black',
+                                },
+                                color: 'black',
+                            },
+                        },
+                        '& .MuiInputLabel-root': {
+                            '&.Mui-focused': {
+                                color: 'black',
+                            },
+                        },
+                    }}
+                />
+                <InputLabel>Password</InputLabel>
+                <TextField
+                    label='Enter 6 characters or more'
+                    id='password'
+                    type='password'
+                    name='password'
+                    required
+                    sx={{
+                        '& .MuiOutlinedInput-root': {
+                            '&.Mui-focused': {
+                                '& fieldset': {
+                                    borderColor: 'black',
+                                },
+                                color: 'black',
+                            },
+                        },
+                        '& .MuiInputLabel-root': {
+                            '&.Mui-focused': {
+                                color: 'black',
+                            },
+                        },
+                    }}
+                />
+                <InputLabel>Confirm Password</InputLabel>
+                <TextField
+                    label='Match the password above'
+                    sx={{
+                        width: {
+                            xs: '100%',
+                            sm: 300
+                        },
+                        '& .MuiOutlinedInput-root': {
+                            '&.Mui-focused': {
+                                '& fieldset': {
+                                    borderColor: 'black',
+                                },
+                                color: 'black',
+                            },
+                        },
+                        '& .MuiInputLabel-root': {
+                            '&.Mui-focused': {
+                                color: 'black',
+                            },
+                        },
+                    }}
+                />
+                <FormControlLabel
+                    control={
+                        <Checkbox sx={{
+                            borderColor: 'black',
+                            '&.Mui-checked': {
+                                color: 'black'
+                            }
+                        }} />
+                    }
+                    label={<Typography variant='p'>I agree to all terms and conditions</Typography>}
+                />
+                <Button variant='contained' type='submit' sx={{ backgroundColor: 'black', mt: 3, height: 50, ':hover': { backgroundColor: 'red' } }}>Submit</Button>
+                <Typography variant='p' sx={{ pt: 3, textAlign: 'center', mr: 1 }}>
+                    Have an account?{'  '}
+                    <Link to={'/login'}
+                        onMouseOver={(e) => e.target.style.color = 'red'}
+                        onMouseOut={(e) => e.target.style.color = 'purple'}
+                        style={{ textDecoration: 'none' }}
+                    >
+                        Log in
+                    </Link>
+                </Typography>
+            </Box>
+        </Paper>
     )
 }

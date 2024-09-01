@@ -89,7 +89,7 @@ export default function MainNavigation() {
               to={'/cart'}
             >
               <Badge
-                badgeContent={cart.length} color="secondary"
+                badgeContent={cart.length} color="primary"
                 sx={{
                   '& .MuiBadge-badge': {
                     right: -3,
