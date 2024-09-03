@@ -5,7 +5,7 @@ const golfClubs = [
         brand: "TaylorMade",
         price: 599.99,
         description: "High-performance driver.",
-        stock: 8
+        imageUrl: '../../qi10.png'
     },
     {
         id: 2,
@@ -13,7 +13,7 @@ const golfClubs = [
         brand: "Callaway",
         price: 599.99,
         description: "High-performance driver.",
-        stock: 5
+        imageUrl: '../../paradym.png'
     },
     {
         id: 3,
@@ -21,7 +21,7 @@ const golfClubs = [
         brand: "TaylorMade",
         price: 999.99,
         description: "Full set of hand crafted irons. ",
-        stock: 12
+        imageUrl: '../../qiirons.png'
     }
 ]
 

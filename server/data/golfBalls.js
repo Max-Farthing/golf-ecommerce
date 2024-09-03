@@ -5,7 +5,7 @@ const golfBalls = [
         brand: "Callaway",
         price: 54.99,
         description: "High-performance golf balls.",
-        stock: 25
+        imageUrl: '../../callaway_balls.jpg'
     },
     {
         id: 2,
@@ -13,15 +13,15 @@ const golfBalls = [
         brand: "Titleist",
         price: 54.99,
         description: "High-performance golf balls.",
-        stock: 25
+        imageUrl: '../../prov1.png'
     },
     {
         id: 3,
-        name: "Distance Golf Balls",
+        name: "Top Flite XL Distance Golf Balls",
         brand: "Top Flite",
-        price: 9.99,
+        price: 29.99,
         description: "XL Distance golf balls from Top Flite",
-        stock: 25
+        imageUrl: '../../topflite.png'
     },
 ]
 

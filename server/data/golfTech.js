@@ -5,7 +5,7 @@ const tech = [
         brand: "Bushnell",
         price: 399.99,
         description: "Highly accurate range finder",
-        stock: 9
+        imageUrl: '../../rangefinder.png'
     },
     {
         id: 2,
@@ -13,7 +13,7 @@ const tech = [
         brand: "Rapsodo",
         price: 699.99,
         description: "Mobile launch monitor giving quick and accurate swing statistics",
-        stock: 3
+        imageUrl: '../../rapsodo.png'
     },
     {
         id: 3,
@@ -21,7 +21,7 @@ const tech = [
         brand: "Blue Tees",
         price: 199.99,
         description: "Music speaker + Course Tracking GPS",
-        stock: 6
+        imageUrl: '../../speaker.png'
     },
 ]
 

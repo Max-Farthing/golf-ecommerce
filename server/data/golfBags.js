@@ -5,7 +5,7 @@ const golfBags = [
         brand: "TaylorMade",
         price: 199.99,
         description: "Stand Bag used by PGA Professionals",
-        stock: 12
+        imageUrl: '../../taylorMade_bag.png'
     },
     {
         id: 2,
@@ -13,7 +13,7 @@ const golfBags = [
         brand: "Callaway",
         price: 279.99,
         description: "Stand Bag used by PGA Professionals",
-        stock: 12
+        imageUrl: '../../callway_bag.png'
     },
     {
         id: 3,
@@ -21,7 +21,7 @@ const golfBags = [
         brand: "Titleist",
         price: 410.99,
         description: "Stand Bag used by PGA Professionals",
-        stock: 5
+        imageUrl: '../../titleist_bag.png'
     },
 ]
 
