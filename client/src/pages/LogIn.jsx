@@ -47,7 +47,7 @@ export default function LogInPage() {
                 <Typography sx={{ mr: 1 }} variant='p'>Dont have an account yet?</Typography>
                 <Link
                     to={'/login/create'}
-                    onMouseOver={(e) => e.target.style.color = 'red'}
+                    onMouseOver={(e) => e.target.style.color = 'darkgreen'}
                     onMouseOut={(e) => e.target.style.color = 'purple'}
                     style={{ textDecoration: 'none'}}
                 >
@@ -106,7 +106,7 @@ export default function LogInPage() {
                         },
                     }}
                 />
-                <Button type='submit' variant='contained' sx={{ backgroundColor: 'black', mt: 3, height: 50, ':hover': { backgroundColor: 'red' } }}>Login</Button>
+                <Button type='submit' variant='contained' sx={{ backgroundColor: 'darkgreen', mt: 3, height: 50, ':hover': { backgroundColor: 'darkgreen', opacity: '75%' } }}>Login</Button>
             </Box>
         </Paper>
     )

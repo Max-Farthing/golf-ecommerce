@@ -16,6 +16,6 @@ export default function GolfBagsPage() {
     }, [])
 
     return (
-        <ProductLayout items={golfBags} brand />
+        <ProductLayout items={golfBags} brand link='/products/golfBags/'/>
     )
 }

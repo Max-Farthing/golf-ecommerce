@@ -1,8 +1,9 @@
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material'
+import { Box, Button, Container, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { replaceCart } from '../store/cartSlice'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import CheckoutStepper from '../components/CheckoutStepper'
 
 export default function OrderInfo() {
     const navigate = useNavigate()
@@ -30,7 +31,8 @@ export default function OrderInfo() {
     }
 
     return (
-        <>
+        <Container sx={{ mt: 10, bgcolor: 'white' }}>
+            <CheckoutStepper activeStep={ordered ? 3 : 1} />
             {ordered &&
                 <Dialog open={ordered}>
                     <DialogTitle>Order Received</DialogTitle>
@@ -40,11 +42,16 @@ export default function OrderInfo() {
                         ))}
                     </DialogContent>
                     <DialogActions sx={{ display: "flex", justifyContent: "center" }}>
-                        <Button onClick={handleModal} sx={{ border: '1px solid black', color: 'black' }}>Go Home</Button>
+                        <Button
+                            onClick={handleModal}
+                            sx={{ color: 'white', alignSelf: 'center', bgcolor: 'darkgreen', height: 50, ':hover': { bgcolor: 'darkgreen', opacity: '75%' } }}
+                        >
+                            Go Home
+                        </Button>
                     </DialogActions>
                 </Dialog>
             }
-            <Box sx={{ mt: 25 }}>
+            <Box>
                 <Box component="form" sx={{ background: "white", my: 10, }}>
                     <TextField id="address" label="Address" variant="outlined" />
                     <TextField id="State" label="State" variant="outlined" />
@@ -56,8 +63,8 @@ export default function OrderInfo() {
                     <TextField id="Security" label="Security Code" variant="outlined" />
                     <TextField id="Expiration" label="Expiration Date" variant="outlined" />
                 </Box>
-                <Button onClick={handleOrder}>Order</Button>
+                <Button onClick={handleOrder}>Confirm Order</Button>
             </Box>
-        </>
+        </Container>
     )
 }

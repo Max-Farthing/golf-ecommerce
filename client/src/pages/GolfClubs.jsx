@@ -1,6 +1,4 @@
-import { Box, Paper, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import ProductLayout from '../components/ProductLayout'
 
 export default function GolfClubsPage() {
@@ -17,6 +15,6 @@ export default function GolfClubsPage() {
     }, [])
 
     return (
-        <ProductLayout items={golfClubs} brand />
+        <ProductLayout items={golfClubs} brand link='/products/golfClubs/' />
     )
 }

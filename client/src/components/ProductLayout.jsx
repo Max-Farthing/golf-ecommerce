@@ -1,14 +1,14 @@
 import { Card, CardContent, CardMedia, Container, Grid, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 
-export default function ProductLayout({ items, brand }) {
+export default function ProductLayout({ items, brand, link }) {
     return (
         <Container>
             <Grid spacing={3} container sx={{ mt: 0 }}>
                 {items.map(item => (
                     <Grid item xs={12} sm={6} md={4} key={item.id}
                         component={Link}
-                        to={`/products/${items}/${item.id}`}
+                        to={link + `${item.id}`}
                         elevation={10}
                         sx={{ textDecoration: 'none', pl: 2, mt: 5, }}
                     >

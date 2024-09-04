@@ -1,4 +1,4 @@
-import { Typography, Button, Box } from '@mui/material'
+import { Typography, Button, Box, Container, Grid, CardMedia } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
@@ -22,16 +22,35 @@ export default function ProductDetailsPage() {
             .catch(err => console.log(err))
     }, [])
 
-    if(!product) {
+    if (!product) {
         return <p>Loading</p>
     }
 
     return (
-        <Box sx={{ mt: 20 }}>
-            <Typography variant='h3'>{product.name}</Typography>
-            <Typography>{product.description}</Typography>
-            <Typography>{product.price}</Typography>
-            <Button onClick={handleAddToCart}>Add to Cart</Button>
-        </Box>
+        <Container sx={{ mt: 10, bgcolor: 'white' }}>
+            <Grid container spacing={4}>
+                <Grid item xs={12} md={8}>
+                    <CardMedia
+                        component='img'
+                        height='400'
+                        image={product.imageUrl}
+                        alt={product.name}
+                        sx={{ objectFit: 'contain' }}
+                    />
+                </Grid>
+                <Grid item xs={12} md={4}>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1}}>
+                        <Typography variant='h6' sx={{fontWeight: 'bold'}}>{product.brand}</Typography>
+                        <Typography variant='h4' sx={{fontWeight: 'bold'}}>{product.name}</Typography>
+                        <Typography variant='body'>{product.description}</Typography>
+                        <Typography variant='h6' sx={{fontWeight: 'bold'}}>${product.price}</Typography>
+                        <Button variant='contained' sx={{ bgcolor: 'darkgreen', height: 50, ':hover': { bgcolor: 'darkgreen', opacity: '75%' } }} onClick={handleAddToCart}>Add to Cart</Button>
+                        <Box>
+                            
+                        </Box>
+                    </Box>
+                </Grid>
+            </Grid>
+        </Container>
     )
 }

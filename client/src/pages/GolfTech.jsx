@@ -15,6 +15,6 @@ export default function GolfTechPage() {
     }, [])
 
     return (
-        <ProductLayout items={golfTech} />
+        <ProductLayout items={golfTech} link='/products/golfTech/'/>
     )
 }

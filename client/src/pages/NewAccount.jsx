@@ -117,11 +117,11 @@ export default function NewAccountPage() {
                     }
                     label={<Typography variant='p'>I agree to all terms and conditions</Typography>}
                 />
-                <Button variant='contained' type='submit' sx={{ backgroundColor: 'black', mt: 3, height: 50, ':hover': { backgroundColor: 'red' } }}>Submit</Button>
+                <Button variant='contained' type='submit' sx={{ backgroundColor: 'darkgreen', mt: 3, height: 50, ':hover': { backgroundColor: 'darkgreen', opacity: '75%' } }}>Submit</Button>
                 <Typography variant='p' sx={{ pt: 3, textAlign: 'center', mr: 1 }}>
                     Have an account?{'  '}
                     <Link to={'/login'}
-                        onMouseOver={(e) => e.target.style.color = 'red'}
+                        onMouseOver={(e) => e.target.style.color = 'darkgreen'}
                         onMouseOut={(e) => e.target.style.color = 'purple'}
                         style={{ textDecoration: 'none' }}
                     >

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setLoggedIn } from '../store/cartSlice'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
-const navStyle = { pb: 1, mx: 2, color: 'black', ':hover': { textDecoration: 'underline', textDecorationColor: 'red', textUnderlineOffset: '5px' } }
+const navStyle = { pb: 1, mx: 2, color: 'black', ':hover': { textDecoration: 'underline', textDecorationColor: 'darkgreen', textUnderlineOffset: '5px' } }
 
 export default function MainNavigation() {
   const dispatch = useDispatch()
@@ -89,16 +89,18 @@ export default function MainNavigation() {
               to={'/cart'}
             >
               <Badge
-                badgeContent={cart.length} color="primary"
+                badgeContent={cart.length} 
                 sx={{
                   '& .MuiBadge-badge': {
                     right: -3,
                     top: 13,
-                    border: `2px solid black`,
+                    color: 'white',
+                    border: `2px solid white`,
+                    backgroundColor: 'darkgreen',
                     padding: '0 4px',
                   },
                 }}>
-                <ShoppingCartIcon sx={{ color: 'black' }} />
+                <ShoppingCartIcon sx={{ color: 'darkgreen' }} />
               </Badge>
             </IconButton>
             {
