@@ -111,7 +111,7 @@ export default function NewAccountPage() {
                         <Checkbox sx={{
                             borderColor: 'black',
                             '&.Mui-checked': {
-                                color: 'black'
+                                color: 'darkgreen'
                             }
                         }} />
                     }

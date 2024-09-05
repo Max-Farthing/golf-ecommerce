@@ -1,9 +1,10 @@
-import { Box, Button, Container, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material'
+import { Box, Button, Container, Dialog, DialogActions, DialogContent, DialogTitle, Grid, FormControlLabel, Checkbox, Typography, TextField } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { replaceCart } from '../store/cartSlice'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import CheckoutStepper from '../components/CheckoutStepper'
+import Input from '../components/Input'
 
 export default function OrderInfo() {
     const navigate = useNavigate()
@@ -31,7 +32,7 @@ export default function OrderInfo() {
     }
 
     return (
-        <Container sx={{ mt: 10, bgcolor: 'white' }}>
+        <Container sx={{ mt: 10, bgcolor: 'white', display: 'flex', flexDirection: 'column' }}>
             <CheckoutStepper activeStep={ordered ? 3 : 1} />
             {ordered &&
                 <Dialog open={ordered}>
@@ -51,20 +52,90 @@ export default function OrderInfo() {
                     </DialogActions>
                 </Dialog>
             }
-            <Box>
-                <Box component="form" sx={{ background: "white", my: 10, }}>
-                    <TextField id="address" label="Address" variant="outlined" />
-                    <TextField id="State" label="State" variant="outlined" />
-                    <TextField id="Zipcode" label="Zipcode" variant="outlined" />
-                    <TextField id="Country" label="Country" variant="outlined" />
-                </Box>
-                <Box component="form" sx={{ background: "white" }}>
-                    <TextField id="Credit" label="Credit Card #" variant="outlined" />
-                    <TextField id="Security" label="Security Code" variant="outlined" />
-                    <TextField id="Expiration" label="Expiration Date" variant="outlined" />
-                </Box>
-                <Button onClick={handleOrder}>Confirm Order</Button>
-            </Box>
+            <Grid container>
+                <Grid item xs={12} md={7} sx={{ borderRight: '1px solid gray', }}>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', }}>
+                        <Typography sx={{ fontWeight: 'bold' }} variant='h5'>Contact</Typography>
+                        <TextField
+                            variant='outlined'
+                            label='Email'
+                            sx={{
+                                width: {
+                                    xs: '91%',
+                                },
+                                '& .MuiOutlinedInput-root': {
+                                    '&.Mui-focused': {
+                                        '& fieldset': {
+                                            borderColor: 'black',
+                                        },
+                                        color: 'black',
+                                    },
+                                },
+                                '& .MuiInputLabel-root': {
+                                    '&.Mui-focused': {
+                                        color: 'black',
+                                    },
+                                },
+                            }}
+                        />
+                        <FormControlLabel
+                            control={
+                                <Checkbox sx={{
+                                    borderColor: 'black',
+                                    '&.Mui-checked': {
+                                        color: 'darkgreen'
+                                    }
+                                }} />
+                            }
+                            label={<Typography variant='p'>Email me special deals and offers</Typography>}
+                        />
+                    </Box>
+                    <Box component="form" sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 1, mt: 1 }}>
+                        <Typography sx={{ fontWeight: 'bold' }} variant='h5'>Shipping Address</Typography>
+                        <Box sx={{ display: 'flex', gap: 1 }}>
+                            <Input label="Country" />
+                            <Input label="Address" />
+                        </Box>
+                        <Box sx={{ display: 'flex', gap: 1 }}>
+                            <Input label="State" />
+                            <Input label="Zipcode" />
+                        </Box>
+                    </Box>
+                    <Box component="form" sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 1, mt: 1 }}>
+                        <Typography sx={{ fontWeight: 'bold' }} variant='h5'>Payment Information</Typography>
+                        <Box sx={{ display: 'flex', gap: 1 }}>
+                            <Input label="Holders Name" />
+                            <Input label="Credit Card #" />
+                        </Box>
+                        <Box sx={{ display: 'flex', gap: 1 }}>
+                            <Input label="Security Code" />
+                            <Input label="Expiration Date" />
+                        </Box>
+                    </Box>
+                    <Box sx={{ display: 'flex', justifyContent: 'center', my: 2 }}>
+                        <Button
+                            variant="contained"
+                            sx={{ bgcolor: 'darkgreen', height: 55, ':hover': { bgcolor: 'darkgreen', opacity: '75%' } }}
+                            onClick={handleOrder}
+                        >
+                            Confirm Order
+                        </Button>
+                    </Box>
+                </Grid>
+                <Grid item xs={12} md={5}>
+                    <Box>
+                        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 1 }}>
+                            <Input label="Discount code or gift card" />
+                            <Button
+                                variant="contained"
+                                sx={{ bgcolor: 'darkgreen', height: 55, ':hover': { bgcolor: 'darkgreen', opacity: '75%' } }}
+                            >
+                                Apply
+                            </Button>
+                        </Box>
+                    </Box>
+                </Grid>
+            </Grid>
         </Container>
     )
 }
