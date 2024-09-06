@@ -35,7 +35,7 @@ export default function ProductDetailsPage() {
                         height='400'
                         image={product.imageUrl}
                         alt={product.name}
-                        sx={{ objectFit: 'contain' }}
+                        sx={{ objectFit: 'contain', }}
                     />
                 </Grid>
                 <Grid item xs={12} md={4}>

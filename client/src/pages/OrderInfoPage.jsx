@@ -53,24 +53,44 @@ export default function OrderInfo() {
         <Container sx={{ mt: 10, bgcolor: 'white', display: 'flex', flexDirection: 'column' }}>
             <CheckoutStepper activeStep={ordered ? 3 : 1} />
             {ordered &&
-                <Dialog open={ordered}>
-                    <DialogTitle>Order Received</DialogTitle>
-                    <DialogContent>
-                        {order.map(item => (
-                            <li key={Math.random()}>{item.product.name} = {item.quantity} x {item.product.price}</li>
-                        ))}
-                    </DialogContent>
-                    <DialogActions sx={{ display: "flex", justifyContent: "center" }}>
-                        <Button
-                            onClick={handleModal}
-                            sx={{ color: 'white', alignSelf: 'center', bgcolor: 'darkgreen', height: 50, ':hover': { bgcolor: 'darkgreen', opacity: '75%' } }}
-                        >
-                            Go Home
-                        </Button>
-                    </DialogActions>
+                <Dialog open={ordered} fullWidth>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <DialogTitle>
+                            <Typography variant='h5' sx={{ fontWeight: 'bold' }}>
+                                Order Received #{Math.floor(Math.random() * 1000000)}
+                            </Typography>
+                        </DialogTitle>
+                        <DialogContent sx={{ width: '75%' }}>
+                            {order.map(item => (
+                                <Card key={Math.random()} elevation={0} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', borderBottom: '1px solid gray' }}>
+                                    <CardMedia
+                                        component='img'
+                                        src={item.product.imageUrl}
+                                        alt={item.product.name}
+                                        sx={{ height: 100, width: 100, objectFit: 'contain' }}
+                                    />
+                                    <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: 1, maxWidth: { xs: 'auto', md: 150}}}>
+                                        <Typography variant='body'>{item.product.name}</Typography>
+                                        <Typography variant='body'>{item.quantity} x ${item.product.price} = ${item.quantity * item.product.price}</Typography>
+                                    </CardContent>
+                                </Card>
+                            ))}
+                            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                                <Typography variant='h6' sx={{ fontWeight: 'bold' }}>Total: ${total}</Typography>
+                            </Box>
+                        </DialogContent>
+                        <DialogActions sx={{ display: "flex", justifyContent: "center" }}>
+                            <Button
+                                onClick={handleModal}
+                                sx={{ mb: 1, color: 'white', alignSelf: 'center', bgcolor: 'darkgreen', height: 45, ':hover': { bgcolor: 'darkgreen', opacity: '75%' } }}
+                            >
+                                Go Home
+                            </Button>
+                        </DialogActions>
+                    </Box>
                 </Dialog>
             }
-            <Grid container sx={{ mt: 2}}>
+            <Grid container sx={{ mt: 2 }}>
                 <Grid item xs={12} md={7} sx={{ borderRight: '1px solid gray', }}>
                     <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', }}>
                         <Typography sx={{ fontWeight: 'bold' }} variant='h5'>Contact</Typography>
@@ -174,7 +194,7 @@ export default function OrderInfo() {
                             </Box>
                             <Box sx={{ display: 'flex', width: '80%', justifyContent: 'space-between' }}>
                                 <Typography variant='body2'>Shipping</Typography>
-                                <Typography variant='body2' sx={{ fontStyle: 'italic'}}>Free</Typography>
+                                <Typography variant='body2' sx={{ fontStyle: 'italic' }}>Free</Typography>
                             </Box>
                             <Box sx={{ display: 'flex', width: '80%', justifyContent: 'space-between' }}>
                                 <Typography variant='h6' sx={{ fontWeight: 'bold' }}>Total</Typography>
@@ -184,6 +204,6 @@ export default function OrderInfo() {
                     </Box>
                 </Grid>
             </Grid>
-        </Container>
+        </Container >
     )
 }

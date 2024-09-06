@@ -1,4 +1,4 @@
-import { Box, Button, Container, Grid, Card, CardContent, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, Card, CardContent, Typography, CardMedia } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeItem } from "../store/cartActions";
@@ -25,17 +25,25 @@ export default function Cart() {
     }
 
     return (
-        <Container sx={{ mt: 10, bgcolor: 'white', display: 'flex', flexDirection: 'column' }}>
+        <Container sx={{ mt: 10, bgcolor: 'white', display: 'flex', flexDirection: 'column', }}>
             {cart.length !== 0 && <CheckoutStepper activeStep={0} />}
             {cart.length !== 0 ? cart.map((item, index) => (
                 <Grid container spacing={2}>
-                    <Grid item xs={12} key={index}>
+                    <Grid item xs={12} key={index} sx={{ borderBottom: '1px solid gray', mt: 2}}>
                         <Card elevation={0} sx={{ display: 'flex', justifyContent: 'space-between', p: 2 }}>
-                            <CardContent sx={{ display: 'flex', flexDirection: 'column' }}>
-                                <Typography variant="h6">{item.product.name}</Typography>
-                                <Typography variant="body1">Quantity: {item.quantity}</Typography>
-                                <Typography variant="body2">Total: ${item.quantity * item.product.price}</Typography>
-                            </CardContent>
+                            <Box sx={{ display: 'flex'}}>
+                                <CardMedia
+                                    component="img"
+                                    src={item.product.imageUrl}
+                                    alt={item.product.name}
+                                    sx={{ height: 200, maxWidth: 200, objectFit: 'contain', }}
+                                />
+                                <CardContent sx={{ display: 'flex', flexDirection: 'column', }}>
+                                    <Typography variant="h6">{item.product.name}</Typography>
+                                    <Typography variant="body1">Quantity: {item.quantity}</Typography>
+                                    <Typography variant="body2">Total: ${item.quantity * item.product.price}</Typography>
+                                </CardContent>
+                            </Box>
                             <Button
                                 variant="text"
                                 onClick={() => handleRemoveItem(item)}
@@ -47,7 +55,7 @@ export default function Cart() {
                     </Grid>
                 </Grid>
             )) : (
-                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <Typography variant="body" sx={{ mt: 3 }}>
                         Your shopping cart is empty
                     </Typography>
