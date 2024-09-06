@@ -30,7 +30,7 @@ export default function Cart() {
             {cart.length !== 0 ? cart.map((item, index) => (
                 <Grid container spacing={2}>
                     <Grid item xs={12} key={index}>
-                        <Card sx={{ display: 'flex', justifyContent: 'space-between', p: 2 }}>
+                        <Card elevation={0} sx={{ display: 'flex', justifyContent: 'space-between', p: 2 }}>
                             <CardContent sx={{ display: 'flex', flexDirection: 'column' }}>
                                 <Typography variant="h6">{item.product.name}</Typography>
                                 <Typography variant="body1">Quantity: {item.quantity}</Typography>
