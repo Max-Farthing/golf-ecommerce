@@ -17,6 +17,7 @@ export default function Cart() {
     }, [dispatch, cart.length])
 
     function handleRemoveItem(product) {
+        console.log(cart)
         dispatch(removeItem(product))
     }
 
@@ -28,7 +29,7 @@ export default function Cart() {
         <Container sx={{ mt: 10, bgcolor: 'white', display: 'flex', flexDirection: 'column', }}>
             {cart.length !== 0 && <CheckoutStepper activeStep={0} />}
             {cart.length !== 0 ? cart.map((item, index) => (
-                <Grid container spacing={2}>
+                <Grid key={item._id} container spacing={2}>
                     <Grid item xs={12} key={index} sx={{ borderBottom: '1px solid gray', mt: 2}}>
                         <Card elevation={0} sx={{ display: 'flex', justifyContent: 'space-between', p: 2 }}>
                             <Box sx={{ display: 'flex'}}>

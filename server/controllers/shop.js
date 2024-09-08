@@ -57,8 +57,7 @@ exports.deleteItemFromCart = (req, res) => {
 
 exports.addItemToCart = (req, res) => {
     const product = req.body.product
-    console.log(product)
-    console.log(req.session)
+    console.log(req.session) 
     if (req.session.user) {
         User.findById(req.session.user._id)
             .then(user => {
