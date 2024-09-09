@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Box, Button, InputAdornment, InputLabel, Paper, TextField, Typography } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { setLoggedIn } from '../store/cartSlice'
-import EmailIcon from '@mui/icons-material/Email';
 
 export default function LogInPage() {
     const dispatch = useDispatch()
@@ -41,8 +40,8 @@ export default function LogInPage() {
     }
 
     return (
-        <Paper elevation={20} sx={{ mt: 20, bg: 'white', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, mx: { xs: '20%', sm: '35%'} }}>
-            <Typography variant='h2' sx={{ mt: 7, mb: -2 }}>Login</Typography>
+        <Paper elevation={20} sx={{ mt: { xs: 8, md: 18}, bg: 'white', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, mx: { xs: -3, sm: '15%', md: '35%'} }}>
+            <Typography variant='h2' sx={{ mt: { xs: 2, md: 7}, mb: -2 }}>Login</Typography>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Typography sx={{ mr: 1 }} variant='p'>Dont have an account yet?</Typography>
                 <Link

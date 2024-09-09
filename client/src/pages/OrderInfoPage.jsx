@@ -50,7 +50,7 @@ export default function OrderInfo() {
     }
 
     return (
-        <Container sx={{ mt: 10, bgcolor: 'white', display: 'flex', flexDirection: 'column' }}>
+        <Container sx={{ mt: 8, bgcolor: 'white', display: 'flex', flexDirection: 'column' }}>
             <CheckoutStepper activeStep={ordered ? 3 : 1} />
             {ordered &&
                 <Dialog open={ordered} fullWidth>

@@ -26,7 +26,7 @@ export default function Cart() {
     }
 
     return (
-        <Container sx={{ mt: 10, bgcolor: 'white', display: 'flex', flexDirection: 'column', }}>
+        <Container sx={{ mt: 8, bgcolor: 'white', display: 'flex', flexDirection: 'column', }}>
             {cart.length !== 0 && <CheckoutStepper activeStep={0} />}
             {cart.length !== 0 ? cart.map((item, index) => (
                 <Grid key={item._id} container spacing={2}>
