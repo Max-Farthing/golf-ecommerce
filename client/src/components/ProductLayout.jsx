@@ -12,7 +12,14 @@ export default function ProductLayout({ items, brand, link }) {
                         elevation={10}
                         sx={{ textDecoration: 'none', pl: 2, mt: 5, }}
                     >
-                        <Card>
+                        <Card elevation={15} sx={{
+                            border: '1px solid lightgrey', borderRadius: 2,
+                            '&:hover': {
+                                boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)',
+                                transform: 'scale(1.02)'
+                            },
+                            transition: 'transform 0.2s, box-shadow 0.2s'
+                        }}>
                             <CardMedia
                                 component="img"
                                 src={item.imageUrl}

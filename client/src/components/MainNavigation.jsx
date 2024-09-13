@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { setLoggedIn } from '../store/cartSlice'
 import MenuIcon from '@mui/icons-material/Menu'
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 
 const navStyle = { pb: 1, color: 'black', ':hover': { textDecoration: 'underline', textDecorationColor: 'darkgreen', textUnderlineOffset: '5px' } }
 

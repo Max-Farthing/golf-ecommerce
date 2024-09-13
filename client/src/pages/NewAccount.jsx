@@ -33,7 +33,7 @@ export default function NewAccountPage() {
     }
 
     return (
-        <Paper elevation={20} sx={{ mt: { xs: 8, md: 18 }, bg: 'white', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, mx: { xs: -3, sm: '15%', md: '35%' } }}>
+        <Paper elevation={20} sx={{ mb: 5, mt: { xs: 8, md: 18 }, bg: 'white', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, mx: { xs: -3, sm: '15%', md: '35%' } }}>
             <Typography variant='h3' sx={{ mt: { xs: 2, md: 7 }, mb: -2 }}>Sign Up</Typography>
             <Box component='form' onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: .5, mb: 7 }}>
                 <Typography sx={{ pb: 1, textAlign: 'center' }}>Sign up <strong>NOW</strong> for special offers</Typography>
