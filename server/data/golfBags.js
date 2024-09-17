@@ -23,6 +23,14 @@ const golfBags = [
         description: "Stand Bag used by PGA Professionals",
         imageUrl: '../../titleist_bag.png'
     },
+    {
+        id: 4,
+        name: "2023 Hoofer Stand Bag",
+        brand: "PING",
+        price: 275.00,
+        description: "Stand Bag used by PGA Professionals",
+        imageUrl: '../../pingbag.png'
+    },
 ]
 
 module.exports = golfBags

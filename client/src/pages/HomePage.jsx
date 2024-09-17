@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardContent, CardMedia, Grid, Typography, useMediaQuery } from '@mui/material'
+import { Box, Button, Card, CardContent, CardMedia, Grid, Input, InputLabel, TextField, Typography, useMediaQuery } from '@mui/material'
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -32,6 +32,7 @@ const products = [
 export default function HomePage() {
     const isMobile = useMediaQuery('(max-width:600px)')
     const [currentIndex, setCurrentIndex] = useState(0)
+    const [email, setEmail] = useState('')
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -109,7 +110,7 @@ export default function HomePage() {
                 <Card
                     onClick={handleNavigate}
                     sx={{
-                        display: 'flex', flexDirection: 'column', alignItems: 'center', width: 600, height: 450, border: '1px solid black',
+                        display: 'flex', flexDirection: 'column', alignItems: 'center', width: { xs: 200, md: 600}, height: { xs: 200, md: 450}, border: '1px solid black',
                         ':hover': { cursor: 'pointer' }
                     }}
                 >
@@ -118,12 +119,12 @@ export default function HomePage() {
                         height='200'
                         src={products[currentIndex].imageUrl}
                         alt={products[currentIndex].name}
-                        sx={{ objectFit: 'contain', borderBottom: '1px solid black', height: 300 }}
+                        sx={{ objectFit: 'contain', borderBottom: '1px solid black', height: { xs: 100, md: 300} }}
                     />
                     <CardContent>
-                        <Typography sx={{ fontWeight: 'bold' }} variant='h5'>{products[currentIndex].brand}</Typography>
-                        <Typography variant='h6'>{products[currentIndex].name}</Typography>
-                        <Typography sx={{ fontWeight: 'bold' }} variant='h5'>${products[currentIndex].price}</Typography>
+                        <Typography sx={{ fontWeight: 'bold' }} variant={!isMobile ? 'h5' : 'h6'}>{products[currentIndex].brand}</Typography>
+                        <Typography variant={!isMobile ? 'h6' : 'body'}>{products[currentIndex].name}</Typography>
+                        <Typography sx={{ fontWeight: 'bold' }} variant={!isMobile ? 'h5' : 'h6'}>${products[currentIndex].price}</Typography>
                     </CardContent>
                 </Card>
                 <Box sx={{ display: 'flex', justifyContent: 'center', my: 1 }}>
@@ -143,9 +144,9 @@ export default function HomePage() {
                     ))}
                 </Box>
             </Box>
-            <Grid container spacing={4} sx={{ my: 3,}}> {/* grid section */}
+            <Grid container spacing={4} sx={{ my: 3, }}> {/* grid section */}
                 <Grid item xs={12} sm={4} md={3}>
-                    <Card elevation={20} sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', border: '1px solid green' }}>
+                    <Card elevation={20} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', border: '1px solid green' }}>
                         <CardMedia
                             component='img'
                             src='../../qi10.png'
@@ -166,7 +167,7 @@ export default function HomePage() {
                     </Card>
                 </Grid>
                 <Grid item xs={12} sm={4} md={3}>
-                    <Card elevation={20} sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', border: '1px solid green'}}>
+                    <Card elevation={20} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', border: '1px solid green' }}>
                         <CardMedia
                             component='img'
                             src='../../callaway_balls.jpg'
@@ -187,7 +188,7 @@ export default function HomePage() {
                     </Card>
                 </Grid>
                 <Grid item xs={12} sm={4} md={3}>
-                    <Card elevation={20} sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', border: '1px solid green'}}>
+                    <Card elevation={20} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', border: '1px solid green' }}>
                         <CardMedia
                             component='img'
                             src='../../callway_bag.png'
@@ -208,7 +209,7 @@ export default function HomePage() {
                     </Card>
                 </Grid>
                 <Grid item xs={12} sm={4} md={3}>
-                    <Card elevation={20} sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', border: '1px solid green'}}>
+                    <Card elevation={20} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', border: '1px solid green' }}>
                         <CardMedia
                             component='img'
                             src='../../rapsodo.png'
@@ -229,6 +230,39 @@ export default function HomePage() {
                     </Card>
                 </Grid>
             </Grid>
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 5, p: 2, backgroundColor: 'lightgray', textAlign: 'center', width: '75vw', pb: 5, mb: 5 }}>
+                <InputLabel>
+                    <Typography variant='h5'>
+                        Stay in touch for GolfGoat News and Deals
+                    </Typography>
+                </InputLabel>
+                <TextField variant='outlined' label='you@example.com' value={email} onChange={(e) => setEmail(e.target.value)}
+                sx={{
+                    width: { md: 500 },
+                    '& .MuiOutlinedInput-root': {
+                        '&.Mui-focused': {
+                            '& fieldset': {
+                                borderColor: 'black',
+                            },
+                            color: 'black',
+                        },
+                    },
+                    '& .MuiInputLabel-root': {
+                        '&.Mui-focused': {
+                            color: 'black',
+                        },
+                    },
+                }}
+                />
+                <Button
+                    type='submit'
+                    variant='contained'
+                    sx={{ backgroundColor: 'darkgreen', mt: 3, height: 50, ':hover': { backgroundColor: 'darkgreen', opacity: '75%' } }}
+                    onClick={() => setEmail('')}
+                >
+                    Sign up
+                </Button>
+            </Box>
         </Box>
     )
 }

@@ -23,6 +23,22 @@ const golfBalls = [
         description: "XL Distance golf balls from Top Flite",
         imageUrl: '../../topflite.png'
     },
+    {
+        id: 4,
+        name: "TP5 Stripe Golf Balls",
+        brand: "TaylorMade",
+        price: 57.99,
+        description: "High-performance golf balls",
+        imageUrl: '../../tp5.jpg'
+    },
+    {
+        id: 5,
+        name: "Straightfli Golf Balls",
+        brand: "Maxfli",
+        price: 29.99,
+        description: "Straightfli golf balls from Maxfli",
+        imageUrl: '../../maxfli.png'
+    },
 ]
 
 module.exports = golfBalls
