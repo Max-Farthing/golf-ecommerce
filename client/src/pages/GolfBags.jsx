@@ -7,7 +7,7 @@ export default function GolfBagsPage() {
     const apiUrl = import.meta.env.VITE_API_URL
 
     useEffect(() => {
-        fetch(`${apiUrl}products/bags`)
+        fetch(`${apiUrl}/products/bags`)
             .then(res => res.json())
             .then(data => {
                 console.log(data)
