@@ -36,7 +36,12 @@ app.use(session({
     store: MongoStore.create({
         mongoUrl: databaseConnection
     }),
-    cookie: { secure: false, maxAge: 3000000 }
+    cookie: {
+        secure: process.env.NODE_ENV === 'production', 
+        httpOnly: true,
+        sameSite: 'None', 
+        maxAge: 3000000,
+    }
 }))
 
 app.get("/", (req, res) => {
