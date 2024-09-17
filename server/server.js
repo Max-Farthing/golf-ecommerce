@@ -13,7 +13,6 @@ const authRoutes = require('./routes/auth')
 const cartRoutes = require('./routes/cart')
 
 app.use(express.json())
-app.enable('trust proxy')
 
 app.use((req, res, next) => {
     const allowedOrigins = ['https://golfgoat.vercel.app', 'http://localhost:5173']
@@ -34,10 +33,16 @@ app.use(session({
     secret,
     resave: false,
     saveUninitialized: false,
+    proxy: true,
+    name: 'TestCookie',
     store: MongoStore.create({
         mongoUrl: databaseConnection
     }),
-    cookie: { secure: false, maxAge: 3000000 }
+    cookie: { 
+        secure: false, 
+        maxAge: 3000000,
+        sameSite: 'none' 
+    }
 }))
 
 app.get("/", (req, res) => {
