@@ -15,7 +15,14 @@ const cartRoutes = require('./routes/cart')
 app.use(express.json())
 
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*')
+    const allowedOrigins = ['https://golfgoat.vercel.app', 'http://localhost:5173']
+    const origin = req.headers.origin
+
+    if (allowedOrigins.includes(origin)) {
+        res.setHeader('Access-Control-Allow-Origin', origin)
+    }
+
+    // res.setHeader('Access-Control-Allow-Origin', '*')
     res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH, DELETE')
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
     res.setHeader('Access-Control-Allow-Credentials', 'true')
