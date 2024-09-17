@@ -32,7 +32,7 @@ app.use((req, res, next) => {
 app.use(session({
     secret,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     proxy: true,
     name: 'TestCookie',
     store: MongoStore.create({
