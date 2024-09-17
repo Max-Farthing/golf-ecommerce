@@ -1,10 +1,12 @@
 import { replaceCart, addItemToCart, removeItemFromCart } from "./cartSlice"
 
+const apiUrl = import.meta.env.VITE_API_URL
+
 export const fetchCartData = () => {
     return async (dispatch) => {
         const fetchData = async () => {
             const response = await fetch(
-                'http://localhost:5000/cart', {
+                `${apiUrl}/cart`, {
                     credentials: 'include'
                 })
 
@@ -31,7 +33,7 @@ export const fetchCartData = () => {
 export const addItem = (product) => {
     return async (dispatch) => {
         const addItemRequest = async () => {
-            const response = await fetch('http://localhost:5000/cart/item',
+            const response = await fetch(`${apiUrl}/cart/item`,
                 {
                     method: "POST",
                     credentials: 'include',
@@ -61,7 +63,7 @@ export const addItem = (product) => {
 export const removeItem = (product) => {
     return async (dispatch) => {
         const removeItemRequest = async () => {
-            const response = await fetch(`http://localhost:5000/cart/delete/item`, {
+            const response = await fetch(`${apiUrl}/cart/delete/item`, {
                 method: "DELETE",
                 credentials: 'include',
                 headers: {

@@ -12,9 +12,10 @@ export default function OrderInfo() {
     const [order, setOrder] = useState([])
     const [total, setTotal] = useState(0)
     const dispatch = useDispatch()
+    const apiUrl = import.meta.env.VITE_API_URL
 
     useEffect(() => {
-        fetch('http://localhost:5000/cart/', {
+        fetch(`${apiUrl}/cart/`, {
             credentials: 'include'
         })
             .then(result => result.json())
@@ -25,13 +26,13 @@ export default function OrderInfo() {
                 for (let i = 0; i < data.length; i++) {
                     calculatedTotal += data[i].quantity * data[i].product.price
                 }
-                setTotal(calculatedTotal)
+                setTotal(parseFloat(calculatedTotal.toFixed(2)))
             })
             .catch(err => console.log(err))
     }, [])
 
     function handleOrder() {
-        fetch('http://localhost:5000/cart/order', {
+        fetch(`${apiUrl}/cart/order`, {
             method: "POST",
             credentials: 'include'
         })

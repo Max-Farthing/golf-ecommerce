@@ -3,9 +3,10 @@ import ProductLayout from '../components/ProductLayout'
 
 export default function GolfClubsPage() {
     const [golfClubs, setGolfClubs] = useState([])
+    const apiUrl = import.meta.env.VITE_API_URL
 
     useEffect(() => {
-        fetch('http://localhost:5000/products/clubs')
+        fetch(`${apiUrl}/products/clubs`)
             .then(res => res.json())
             .then(data => {
                 console.log(data)

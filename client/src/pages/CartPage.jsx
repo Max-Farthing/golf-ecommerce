@@ -10,7 +10,7 @@ export default function Cart() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const cart = useSelector((state) => state.cart.items)
-    const [total, setTotal] = useState(0)
+    // const [total, setTotal] = useState(0)
 
     useEffect(() => {
         dispatch(fetchCartData())

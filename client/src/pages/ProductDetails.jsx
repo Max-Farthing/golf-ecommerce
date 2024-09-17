@@ -12,13 +12,14 @@ export default function ProductDetailsPage() {
     const dispatch = useDispatch()
     const { category, productId } = useParams()
     const [product, setProduct] = useState(null)
+    const apiUrl = import.meta.env.VITE_API_URL
 
     function handleAddToCart() {
         dispatch(addItem(product))
     }
 
     useEffect(() => {
-        fetch(`http://localhost:5000/products/${category}/${productId}`)
+        fetch(`${apiUrl}/products/${category}/${productId}`)
             .then(res => res.json())
             .then(data => {
                 setProduct(data)

@@ -16,6 +16,7 @@ export default function MainNavigation() {
   const [currentMessage, setCurrentMessage] = useState(0)
   const [animateKey, setAnimateKey] = useState(0)
   const isMobile = useMediaQuery('(max-width:600px)')
+  const apiUrl = import.meta.env.VITE_API_URL
 
   const promoMessages = [
     "Free Shipping On All Orders",
@@ -24,7 +25,7 @@ export default function MainNavigation() {
   ]
 
   useEffect(() => {
-    fetch('http://localhost:5000/auth/check', {
+    fetch(`${apiUrl}/auth/check`, {
       method: "GET",
       credentials: 'include'
     })
@@ -53,7 +54,7 @@ export default function MainNavigation() {
   }
 
   function handleLogOut() {
-    fetch('http://localhost:5000/auth/logout', {
+    fetch(`${apiUrl}/auth/logout`, {
       method: "POST",
       credentials: 'include'
     })

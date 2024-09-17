@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 export default function NewAccountPage() {
     const navigate = useNavigate()
+    const apiUrl = import.meta.env.VITE_API_URL
 
     function handleSubmit(event) {
         event.preventDefault()
@@ -18,7 +19,7 @@ export default function NewAccountPage() {
             password: data.password
         }
 
-        fetch('http://localhost:5000/auth/signup', {
+        fetch(`${apiUrl}/auth/signup`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'

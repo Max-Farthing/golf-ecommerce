@@ -3,9 +3,10 @@ import ProductLayout from '../components/ProductLayout'
 
 export default function GolfTechPage() {
     const [golfTech, setGolfTech] = useState([])
+    const apiUrl = import.meta.env.VITE_API_URL
 
     useEffect(() => {
-        fetch('http://localhost:5000/products/tech')
+        fetch(`${apiUrl}/products/tech`)
             .then(res => res.json())
             .then(data => {
                 console.log(data)

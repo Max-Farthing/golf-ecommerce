@@ -7,6 +7,7 @@ import { setLoggedIn } from '../store/cartSlice'
 export default function LogInPage() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const apiUrl = import.meta.env.VITE_API_URL
 
     function handleSubmit(event) {
         event.preventDefault()
@@ -21,7 +22,7 @@ export default function LogInPage() {
             password: data.password
         }
 
-        fetch('http://localhost:5000/auth/login', {
+        fetch(`${apiUrl}/auth/login`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
