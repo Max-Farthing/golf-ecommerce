@@ -24,13 +24,12 @@
 <br />
 <div align="center">
   <a href="https://github.com/Max-Farthing/golf-ecommerce">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="client/public/goat.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">GolfGoat - A Golf Ecommerce Store</h3>
 
   <p align="center">
-    GolfGoat is a full-stack e-commerce web application that enables users to explore, shop, and purchase a wide range of golf gear and accessories. The app offers a seamless shopping experience by allowing users to create an account or continue as guests. Users can browse different categories, view product details, and add items to their cart. The backend manages product information, user authentication, and order processing, while the frontend provides an intuitive, responsive interface built with modern web technologies.
     <br />
     <a href="https://github.com/Max-Farthing/golf-ecommerce"><strong>Explore the docs »</strong></a>
     <br />
@@ -71,9 +70,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://golfgoat.vercel.app/)
+[![image](https://github.com/user-attachments/assets/3ed77bca-06bd-40ed-b557-904d8b54e9e8)](https://golfgoat.vercel.app/)
 
+<p>
 GolfGoat is a full-stack e-commerce web application that enables users to explore, shop, and purchase a wide range of golf gear and accessories. The app offers a seamless shopping experience by allowing users to create an account or continue as guests. Users can browse different categories, view product details, and add items to their cart. The backend manages product information, user authentication, and order processing, while the frontend provides an intuitive, responsive interface built with modern web technologies.
+</p align="center">
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -103,8 +104,6 @@ Have an updated version of npm installed
   ```
 
 ### Installation
-
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
 1. Clone the repo
    ```sh
